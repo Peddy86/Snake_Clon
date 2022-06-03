@@ -1,0 +1,66 @@
+﻿<Window x:Class="Snake_Clon.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Snake_Clon"
+        mc:Ignorable="d"
+        Title="Snake" Height="Auto" Width="Auto" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Topmost="True" Loaded="Window_Loaded" KeyDown="Window_KeyDown">
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:MainWindow.Pause}" CanExecute="Pause_CanExecute" Executed="Pause_Executed"/>
+    </Window.CommandBindings>
+    
+    <Window.InputBindings>        
+        <KeyBinding Command="{x:Static local:MainWindow.Pause}" Key="P"/>
+    </Window.InputBindings>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0">
+            <MenuItem Header="_Spiel">
+                <MenuItem x:Name="Neues_Spiel_MenuItem" Header="_Neues Spiel" Click="NeuesSpiel_Click"></MenuItem>
+                <MenuItem x:Name="Pause_MenuItem" Header="_Pause" IsCheckable="True" Command="{x:Static local:MainWindow.Pause}"/>
+                <MenuItem x:Name="Bestenliste_MenuItem" Header="Bestenliste" Click="Bestenliste_MenuItem_Click"></MenuItem>
+                <MenuItem Header="_Beenden" Click="Beenden_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Einstellung">
+                <Label>Geschwindigkeit</Label>                
+                <Slider x:Name="Geschwindigkeit_Slider" Maximum="1000" Minimum="100" Width="200" Height="20" Value="700" ></Slider>
+                <MenuItem Header="Items">
+                    <MenuItem x:Name="Pilz_MI" Header="Pilz" IsCheckable="True" IsChecked="True"/>
+                    <MenuItem x:Name="Maus_MI" Header="Maus" IsCheckable="True" IsChecked="True"></MenuItem>
+                    <MenuItem x:Name="Stern_MI" Header="Stern" IsCheckable="True" IsChecked="True"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Geschwindigkeitszuwachs">
+                    <RadioButton x:Name="ErsteGeschwindigkeit_MenuItem" Content="Stufe 1"  IsChecked="False"/>
+                    <RadioButton x:Name="ZweiteGeschwindigkeit_MenuItem" Content="Stufe 2" IsChecked="True"></RadioButton>
+                    <RadioButton x:Name="DritteGeschwindigkeit_MenuItem" Content="Stufe 3" IsChecked="False"></RadioButton>
+                </MenuItem>
+                <MenuItem Header="Hindernisse">
+                    <Label>Senkrechte Mauern</Label>
+                    <CheckBox x:Name="MauerEins_chb" IsChecked="True" Content="Erste Mauer"></CheckBox>
+                    <Slider x:Name="SenkrechtePositionEins_Slider" Minimum="50" Width="200" Height="20" Maximum="800"></Slider>
+                    <CheckBox x:Name="MauerZwei_chb" IsChecked="True" Content="Erste Mauer"></CheckBox>
+                    <Slider x:Name="SenkrechtePositionZwei_Slider" Minimum="50" Width="200" Height="20" Maximum="800"></Slider>
+                    <CheckBox x:Name="MauerDrei_chb" Content="Erste Mauer"></CheckBox>
+                    <Slider x:Name="SenkrechtePositionDrei_Slider" Minimum="50" Width="200" Height="20" Maximum="800"></Slider>
+                    <CheckBox x:Name="MauerVier_chb" Content="Erste Mauer"></CheckBox>
+                    <Slider x:Name="SenkrechtePositionVier_Slider" Minimum="50" Width="200" Height="20" Maximum="800"></Slider>
+                    <Label>Horizontale Mauern</Label>
+                    <CheckBox x:Name="MauerEinsHori_chb" IsChecked="True" Content="Erste Mauer"></CheckBox>
+                    <Slider x:Name="HorizontalePositionEins_Slider" Minimum="50" Width="200" Height="20" Maximum="800"></Slider>
+                    <CheckBox x:Name="MauerZweiHori_chb" IsChecked="True" Content="Erste Mauer"></CheckBox>
+                    <Slider x:Name="HorizontalePositionZwei_Slider" Minimum="50" Width="200" Height="20" Maximum="800"></Slider>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        
+        <Canvas x:Name="Spielfeld" Grid.Row="1" Background="#FFBFECA2">                      
+        </Canvas>        
+    </Grid>
+
+</Window>
